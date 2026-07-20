@@ -1,2 +1,11 @@
 # Wind-H2_Hybrid_Kraftwerk
 Übungsprojekt in Codesys, Steuerungslogik eines Programms das aus der angegebenen Leistung von Windrädern 2 Pufferbatterien lädt. Pufferbatterie1 versorgt den Elektrolysator, welcher den H2-Speicher auffüllt. Pufferbatterie2 deckt eine voreingestellte Mindesteinspeisung ins Netz so lange bis die Brennstoffzelle übernimmt. Wenn Pufferbatterien + H2-Speicher voll wird die volle Windleistung eingespeist.
+Der Kompressor des Elektrolysators sowie der Kühlmittelpumpe für den Elektrolysator sind mit PID-Reglern im PLC_PRG geregelt.
+PLC_PRG enthält eine Wiederanlaufsperre sowie die PID-Regler
+Die Schrittkette für die Steuerung der Einspeisung oder der Ladung der Batterien + die Simulation des Ursache <-> Wirkungs Zusammenhangs sind im FC_Betriebsmodus.
+PLC_PRG ruft die globalen Variablen sowie die FC_Betriebsmodus auf
+in der HMI (Visualisierung) lässt sich über einen Schieberegler die anliegende Windleisung simulieren. Wenn der Startknopf gedrückt wurde wird eine Leistung von 50kW (konkrete Zahlenwerte lassen sich im Programm bei Bedarf ändern) sofort ins Netz eingespeist. Mit der Differenz aus der abgegebenen Leistung und den eingestellten 50kW Mindesteinspeisung werden zuerst die Pufferbatterien und dann der H2-Speicher aufgefüllt.
+Wenn Batterie2 voll geladen ist geht der Elektrolysator in Betrieb. Die Temperatur steigt auf dem Messgerät, ebenfalls steigt der Kühlmittelfluss und H2-Druck an den Anzeigen auf der HMI. Wenn der H2-Speicher voll ist geht der Elektrolysator wieder aus, die Temperatur sinkt langsam ab. Die Kühlmittelpumpe läuft, dank Nachlaufsteuerung mit bis die Temperatur unter 50°C absinkt, dann schaltet die Kühlerpumpe ab.
+Wenn eine Windflaute eintritt (lässt sich mit dem Schieberegler simulieren) sinkt die eingespeiste Leistung sofort auf 50 kW, Batterie2 entlädt sich langsam bis auf ca. 10% dann geht die Brennstoffzelle an und der H2-Speicher wird geleert bis entweder die Windleistung wieder ansteigt oder die Einspeisung abschaltet. 
+Zum Schutz des Wasserstofftanks entleert sich der Behälter nicht unter 10% Druck
+Im Falle einer Betätigung schalten Elektrolysator, Brennstoffzelle und Einspeisung sofort ab. Zur erneuten Aktivierung ist es erforderlich den Notaus zu entriegeln und den START Taster erneut zu betätigen
