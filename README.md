@@ -1,0 +1,2 @@
+# Wind-H2_Hybrid_Kraftwerk
+Übungsprojekt in Codesys, Steuerungslogik eines Programms das aus der angegebenen Leistung von Windrädern 2 Pufferbatterien lädt. Pufferbatterie1 versorgt den Elektrolysator, welcher den H2-Speicher auffüllt. Pufferbatterie2 deckt eine voreingestellte Mindesteinspeisung ins Netz so lange bis die Brennstoffzelle übernimmt. 
