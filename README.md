@@ -1,4 +1,5 @@
 # Wind-H2_Hybrid_Kraftwerk
+Dieses Codesys-Projekt soll modellhaft die Steuerungslogik einer Windenergieanlage abbilden, welche mithilfe von Pufferbatterien und einem Wasserstoffspeicher + Brennstoffzelle eine permanente Versorgungssicherheit (Grundlast) bewerkstelligen kann.
 Übungsprojekt in Codesys, Steuerungslogik eines Programms das aus der angegebenen Leistung von Windrädern 2 Pufferbatterien lädt. Pufferbatterie1 versorgt den Elektrolysator, welcher den H2-Speicher auffüllt. Pufferbatterie2 deckt eine voreingestellte Mindesteinspeisung ins Netz so lange bis die Brennstoffzelle übernimmt. Wenn Pufferbatterien + H2-Speicher voll wird die volle Windleistung eingespeist.
 Der Kompressor des Elektrolysators sowie der Kühlmittelpumpe für den Elektrolysator sind mit PID-Reglern im PLC_PRG geregelt.
 PLC_PRG enthält eine Wiederanlaufsperre sowie die PID-Regler
@@ -9,3 +10,4 @@ Wenn Batterie2 voll geladen ist geht der Elektrolysator in Betrieb. Die Temperat
 Wenn eine Windflaute eintritt (lässt sich mit dem Schieberegler simulieren) sinkt die eingespeiste Leistung sofort auf 50 kW, Batterie2 entlädt sich langsam bis auf ca. 10% dann geht die Brennstoffzelle an und der H2-Speicher wird geleert bis entweder die Windleistung wieder ansteigt oder die Einspeisung abschaltet. 
 Zum Schutz des Wasserstofftanks entleert sich der Behälter nicht unter 10% Druck
 Im Falle einer Betätigung schalten Elektrolysator, Brennstoffzelle und Einspeisung sofort ab. Zur erneuten Aktivierung ist es erforderlich den Notaus zu entriegeln und den START Taster erneut zu betätigen
+Zu den simulierten Ursache <-> Wirkungs Zusammenhängen gehören: Temperaturanstieg bei Aktivierung des Elektrolysators, Dämpfung des Temperaturanstiegs bei aktiver Kühlerpumpe, Druckzunahme im H2-Speicher bei laufendem Elektrolysator, Druckabnahme im H2-Speicher bei laufender Brennstoffzelle, Ladung der Pufferbatterien bei aufgeschlteter Windleistung
